@@ -100,13 +100,7 @@ repositories {
   google()
   mavenCentral()
   maven { url "https://jitpack.io" }
-//  maven {
-//    url = uri("https://maven.pkg.github.com/dojah-inc/sdk-kotlin")
-//    credentials {
-//      username = "dojah-inc"
-//      password = "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"
-//    }
-//  }
+
 }
 
 
