@@ -75,5 +75,3 @@ android/keystores/debug.keystore
 .turbo/
 
 lib/
-example/android/gradle.properties
-android/gradle.properties
