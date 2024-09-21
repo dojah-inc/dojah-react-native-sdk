@@ -22,7 +22,8 @@ buildscript {
     classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
   }
 }
-
+def dojah_name = project.properties["Dojah_NAME"]
+def dojah_pass = project.properties["Dojah_PASS"]
 allprojects {
   repositories {
     google()
@@ -31,8 +32,8 @@ allprojects {
     maven {
         url = uri("https://maven.pkg.github.com/dojah-inc/sdk-kotlin")
         credentials {
-            username = "dojah-inc"
-            password = "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"
+          username = dojah_name
+          password = dojah_pass
         }
     }
   }

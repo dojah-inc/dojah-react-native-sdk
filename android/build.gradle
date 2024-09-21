@@ -1,4 +1,6 @@
 
+  def dojah_name = project.properties["Dojah_NAME"]
+  def dojah_pass = project.properties["Dojah_PASS"]
 buildscript {
   // Buildscript is evaluated before everything else so we can't use getExtOrDefault
   def kotlin_version = rootProject.ext.has("kotlinVersion") ? rootProject.ext.get("kotlinVersion") : project.properties["DojahKyc_kotlinVersion"]
@@ -101,8 +103,8 @@ repositories {
   maven {
     url = uri("https://maven.pkg.github.com/dojah-inc/sdk-kotlin")
     credentials {
-      username = "dojah-inc"
-      password = "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"
+      username = dojah_name
+      password = dojah_pass
     }
   }
 }
