@@ -26,7 +26,6 @@
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
-	  <!-- Do not change NSAllowsArbitraryLoads to true, or you will risk app rejection! -->
 		<key>NSAllowsArbitraryLoads</key>
 		<false/>
 		<key>NSAllowsLocalNetworking</key>
@@ -48,5 +47,23 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSCameraUsageDescription</key>
+	<string>Dojah Widget SDK needs Camera permission to capture images and ID documents for verification purposes</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Dojah Widget SDK needs Microphone permission to capture audio for verification purposes</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Dojah Widget SDK needs Photo Library permission to pick images and ID documents for verification purposes</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Dojah Widget SDK to ensure the security and integrity of your account</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Dojah Widget SDK to ensure the security and integrity of your account</string>
+	<!-- <key>UIAppFonts</key>
+	<array>
+		<string>Atakk-Bold.ttf</string>
+		<string>Atakk-Medium.ttf</string>
+		<string>Atakk-Light.ttf</string>
+		<string>Atakk-Regular.ttf</string>
+		<string>Atakk-Semibold.ttf</string>
+	</array> -->
 </dict>
 </plist>

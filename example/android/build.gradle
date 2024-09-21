@@ -1,21 +1,41 @@
 buildscript {
-    ext {
-        buildToolsVersion = "34.0.0"
-        minSdkVersion = 23
-        compileSdkVersion = 34
-        targetSdkVersion = 34
-        ndkVersion = "26.1.10909125"
-        kotlinVersion = "1.9.22"
+  ext {
+    buildToolsVersion = "34.0.0"
+    minSdkVersion = 24
+    compileSdkVersion = 34
+    targetSdkVersion = 34
+    ndkVersion = "26.1.10909125"
+    kotlinVersion = "1.9.22"
+    okhttpVersion = "5.0.0-alpha.2"
+    navigationVersion = "2.5.1"
+    cameraVersion = "1.3.0"
+    glideVersion = "4.16.0"
+
+  }
+  repositories {
+    google()
+    mavenCentral()
+  }
+  dependencies {
+    classpath("com.android.tools.build:gradle")
+    classpath("com.facebook.react:react-native-gradle-plugin")
+    classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
+  }
+}
+
+allprojects {
+  repositories {
+    google()
+    mavenCentral()
+    maven { url "https://jitpack.io" }
+    maven {
+        url = uri("https://maven.pkg.github.com/dojah-inc/sdk-kotlin")
+        credentials {
+            username = "dojah-inc"
+            password = "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"
+        }
     }
-    repositories {
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        classpath("com.android.tools.build:gradle")
-        classpath("com.facebook.react:react-native-gradle-plugin")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
-    }
+  }
 }
 
 apply plugin: "com.facebook.react.rootproject"
