@@ -50,7 +50,7 @@ dependencyResolutionManagement {
 ```
 
 ### Permissions
-For Android you don't need to declare permissions, its already included int the Package.
+For Android you don't need to declare permissions, its already included in the Package.
 
 ## IOS Installation
 
