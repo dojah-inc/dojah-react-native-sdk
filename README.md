@@ -89,7 +89,7 @@ pod install
 #import <React/RCTRootView.h>
 ```
 
-- then replace application function in your AppDelegate with the following:
+- Then replace application function in your AppDelegate with the following:
 
 `REMEMBER TO CHANGE THE Your App Name,to the actual name of your App`
 
