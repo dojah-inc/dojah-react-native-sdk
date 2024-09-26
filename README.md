@@ -73,6 +73,12 @@ target 'Example' do
   ...
 end
 ```
+and run pod install in your ios folder:
+```sh
+cd ios
+pod install
+``` 
+
 
 ### Make some few changes in your AppDelegate.mm file 
 
