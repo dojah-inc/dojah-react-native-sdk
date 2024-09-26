@@ -127,6 +127,8 @@ NSLocationWhenInUseUsageDescription - describe why your app needs access to the 
 
 ## Usage
 
+To start KYC, import Dojah in your code, and launch Dojah Screen
+
 ```js
 import {launchDojahKyc } from 'react-native-dojah_kyc';
 
