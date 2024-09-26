@@ -78,10 +78,10 @@ end
 
 - Add the following imports:
 
-  ```objective-c
-  #import <React/RCTBridge.h>
-  #import <React/RCTRootView.h>
-  ```
+```objective-c
+#import <React/RCTBridge.h>
+#import <React/RCTRootView.h>
+```
 
 - then replace application function in your AppDelegate with the following:
 
