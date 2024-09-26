@@ -140,5 +140,3 @@ launchDojahKyc( "{Required: Your_WidgetID}","{Optional: Reference_ID}",“{Optio
 - `Email Address` - an `OPTIONAL` parameter that allows you to initialize the SDK for an ongoing verification
 
 
-`REMEMBER TO CHANGE THE WIDGET ID,referenceId, AND email BEFORE RUNING YOUR APP`
-
