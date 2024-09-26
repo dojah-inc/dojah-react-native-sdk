@@ -1,4 +1,4 @@
-# Dojah KYC SDK (Android)
+# Dojah KYC SDK (React Native)
 
 
 ## Installation
