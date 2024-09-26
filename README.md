@@ -130,7 +130,11 @@ NSLocationWhenInUseUsageDescription - describe why your app needs access to the 
 ```js
 import {launchDojahKyc } from 'react-native-dojah_kyc';
 
-launchDojahKyc( "{Required: Your_WidgetID}","{Optional: Reference_ID}",“{Optional: Email_Address}”)
+launchDojahKyc(
+  "{Required: Your_WidgetID}",
+  "{Optional: Reference_ID}",
+  “{Optional: Email_Address}”
+)
 
 ```
 
