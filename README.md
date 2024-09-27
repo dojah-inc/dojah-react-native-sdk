@@ -69,7 +69,7 @@ example
 target 'Example' do
   ...
   pod 'Realm', '~> 10.52.2', :modular_headers => true
-  pod 'DojahWidget', :git => 'https://github.com/shittu33/test-react-native-ios.git', :tag => '1.0.3'
+  pod 'DojahWidget', :git => 'https://github.com/dojah-inc/sdk-swift.git', :branch => 'pod-package'
   ...
 end
 ```
