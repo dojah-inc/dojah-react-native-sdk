@@ -61,7 +61,7 @@ For Android you don't need to declare permissions, its already included in the P
 
 ```
   pod 'Realm', '~> 10.52.2', :modular_headers => true
-  pod 'DojahWidget', :git => 'https://github.com/shittu33/test-react-native-ios.git', :tag => 'main'
+  pod 'DojahWidget', :git => 'https://github.com/dojah-inc/sdk-swift.git', :branch => 'pod-package'
 ```
 
 example
