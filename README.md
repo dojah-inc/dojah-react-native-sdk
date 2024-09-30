@@ -177,5 +177,6 @@ To use the SDK, you need a WidgetID, which is a required parameter for initializ
     - Add Verification Pages: Customize the verification steps in your flow (e.g., ID verification, address verification, etc.).
     
 6. Publish Your Widget: After configuring your flow, publish the widget. Once published, your flow is live.
+
 7. Copy Your Widget ID: After publishing, the platform will generate a Widget ID. Copy this Widget ID as you will need it to initialize the SDK as stated above.
 ```
