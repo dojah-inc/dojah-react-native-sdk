@@ -7,7 +7,7 @@
 npm install react-native-dojah_kyc
 ```
 
-## Android Installation
+## Android Setup
 
 ### Requirements
 * Minimum Android SDK version - 21
@@ -52,7 +52,7 @@ dependencyResolutionManagement {
 ### Permissions
 For Android you don't need to declare permissions, its already included in the Package.
 
-## IOS Installation
+## IOS Setup
 
 ### Requirements
 * Minimum iOS version - 14
@@ -133,7 +133,7 @@ NSLocationWhenInUseUsageDescription - describe why your app needs access to the 
 
 ## Usage
 
-To start KYC, import Dojah in your code, and launch Dojah Screen
+To start KYC, import Dojah in your React Native code, and launch Dojah Screen
 
 ```js
 import {launchDojahKyc } from 'react-native-dojah_kyc';
