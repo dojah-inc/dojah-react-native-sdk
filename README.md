@@ -147,8 +147,35 @@ launchDojahKyc(
 ```
 
 ### SDK Parameters
-- `WidgetID` - a `REQUIRED` parameter. You get this ID when you sign up on the Dojoh platform
+- `WidgetID` - a `REQUIRED` parameter. You get this ID when you sign up on the Dojah platform, follow the next step to generate your WidgetId.
 - `Reference ID` - an `OPTIONAL` parameter that allows you to initialize the SDK for an ongoing verification.
-- `Email Address` - an `OPTIONAL` parameter that allows you to initialize the SDK for an ongoing verification
+- `Email Address` - an `OPTIONAL` parameter that allows you to initialize the SDK for an ongoing verification.
 
+## How to Get a Widget ID
+To use the SDK, you need a WidgetID, which is a required parameter for initializing the SDK. You can obtain this by creating a flow on the Dojah platform. Follow these steps to configure and get your Widget ID:
 
+```txt
+1. Log in to your Dojah Dashboard: If you don’t have an account, sign up on the Dojah platform.
+
+2. Navigate to the EasyOnboard Feature: Once logged in, find the EasyOnboard section on your dashboard.
+
+3. Create a Flow:
+
+    - Click on the 'Create a Flow' button.
+    - Name Your Flow: Choose a meaningful name for your flow, which will help you identify it later.
+
+4. Add an Application:
+
+    - Either create a new application or add an existing one.
+    - Make sure to provide relevant details, including country and other preferences.
+
+5. Configure the Flow:
+
+    - Select a Country: Choose the country relevant to your verification process.
+    - Select a Preview Process: Decide between automatic or manual verification.
+    - Notification Type: Choose how you’d like to receive notifications for updates (email, SMS, etc.).
+    - Add Verification Pages: Customize the verification steps in your flow (e.g., ID verification, address verification, etc.).
+    
+6. Publish Your Widget: After configuring your flow, publish the widget. Once published, your flow is live.
+7. Copy Your Widget ID: After publishing, the platform will generate a Widget ID. Copy this Widget ID as you will need it to initialize the SDK as stated above.
+```
