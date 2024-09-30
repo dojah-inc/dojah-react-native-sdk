@@ -167,11 +167,11 @@ To use the SDK, you need a WidgetID, which is a required parameter for initializ
 4. Add an Application:
 
     - Either create a new application or add an existing one.
-    - Make sure to provide relevant details, including country and other preferences.
+    - Customise your widget with your brand logo and color by selecting an application.
 
 5. Configure the Flow:
 
-    - Select a Country: Choose the country relevant to your verification process.
+    - Select a Country: Choose the country or countries relevant to your verification process.
     - Select a Preview Process: Decide between automatic or manual verification.
     - Notification Type: Choose how you’d like to receive notifications for updates (email, SMS, etc.).
     - Add Verification Pages: Customize the verification steps in your flow (e.g., ID verification, address verification, etc.).
