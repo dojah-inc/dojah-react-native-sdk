@@ -2,7 +2,7 @@ name: CI
 on:
   push:
     branches:
-      - main
+      - development
 jobs:
   lint:
     runs-on: ubuntu-latest
