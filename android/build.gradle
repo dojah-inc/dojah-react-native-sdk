@@ -1,6 +1,10 @@
 
-  def dojah_name = project.properties["Dojah_NAME"]
-  def dojah_pass = project.properties["Dojah_PASS"]
+  def gitPackagePropertiesFile = rootProject.file("local.properties")
+  def localProperties = new Properties()
+  localProperties.load(new FileInputStream(gitPackagePropertiesFile))
+
+  def dojah_name = localProperties["Dojah_NAME"]
+  def dojah_pass = localProperties["Dojah_PASS"]
 buildscript {
   // Buildscript is evaluated before everything else so we can't use getExtOrDefault
   def kotlin_version = rootProject.ext.has("kotlinVersion") ? rootProject.ext.get("kotlinVersion") : project.properties["DojahKyc_kotlinVersion"]
@@ -123,7 +127,8 @@ dependencies {
   implementation "com.facebook.react:react-native:+"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-  implementation ("com.dojah_inc:dojah_android_sdk:pre-1.0.23")
+  implementation ("com.dojah_inc:dojah_android_sdk:0.0.3")
+  // implementation ("com.dojah_inc:dojah_android_sdk:dev-0.0.5")
 
 }
 
