@@ -22,6 +22,11 @@ buildscript {
     classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
   }
 }
+
+def gitPackagePropertiesFile = rootProject.file("local.properties")
+def localProperties = new Properties()
+localProperties.load(new FileInputStream(gitPackagePropertiesFile))
+
 def dojah_name = project.properties["Dojah_NAME"]
 def dojah_pass = project.properties["Dojah_PASS"]
 allprojects {
