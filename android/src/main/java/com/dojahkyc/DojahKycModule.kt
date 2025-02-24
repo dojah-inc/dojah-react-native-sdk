@@ -1,6 +1,6 @@
 package com.dojahkyc
 
-import com.dojah_inc.dojah_android_sdk.DojahSdk
+import com.dojah.kyc_sdk_kotlin.DojahSdk
 import com.facebook.react.bridge.LifecycleEventListener
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext

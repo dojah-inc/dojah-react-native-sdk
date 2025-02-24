@@ -8,3 +8,12 @@
 #   http://developer.android.com/guide/developing/tools/proguard.html
 
 # Add any project specific keep options here:
+
+# Keep gRPC-related classes
+-keep class io.grpc.** { *; }
+-keep class com.google.android.libraries.places.** { *; }
+
+
+-keepnames class io.grpc.internal.**
+-keepclassmembers class io.grpc.internal.** { *; }
+-dontwarn io.grpc.**

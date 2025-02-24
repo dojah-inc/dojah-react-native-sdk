@@ -77,10 +77,10 @@ and run pod install in your ios folder:
 ```sh
 cd ios
 pod install
-``` 
+```
 
 
-### Make some few changes in your AppDelegate.mm file 
+### Make some few changes in your AppDelegate.mm file
 
 - Add the following imports:
 
@@ -95,7 +95,7 @@ pod install
 
 ```objective-c
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  
+
   // Initialize the React Native bridge
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
 
@@ -175,7 +175,7 @@ To use the SDK, you need a WidgetID, which is a required parameter for initializ
     - Select a Preview Process: Decide between automatic or manual verification.
     - Notification Type: Choose how you’d like to receive notifications for updates (email, SMS, etc.).
     - Add Verification Pages: Customize the verification steps in your flow (e.g., ID verification, address verification, etc.).
-    
+
 6. Publish Your Widget: After configuring your flow, publish the widget. Once published, your flow is live.
 
 7. Copy Your Widget ID: After publishing, the platform will generate a Widget ID. Copy this Widget ID as you will need it to initialize the SDK as stated above.

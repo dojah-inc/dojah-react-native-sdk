@@ -80,15 +80,15 @@ android {
 
   buildTypes {
     release {
-      minifyEnabled false
+      minifyEnabled true
     }
   }
 
-  buildFeatures {
-    dataBinding = true
-    viewBinding = true
-    buildConfig = true
-  }
+  // buildFeatures {
+  //   dataBinding = true
+  //   viewBinding = true
+  //   buildConfig = true
+  // }
 
   lintOptions {
     disable "GradleCompatible"
@@ -128,7 +128,9 @@ dependencies {
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
   // implementation ("com.dojah_inc:dojah_android_sdk:0.0.3")
-  implementation ("com.dojah_inc:dojah_android_sdk:dev-0.1.0")
+  implementation ("com.dojah_inc:dojah_android_sdk:dev-0.1.7")
+  // implementation ("com.dojah_inc.kyc_sdk_kotlin:dev-0.1.6")
+  // implementation ("com.dojah.kyc_sdk_kotlin:dev-0.1.6")
 
 }
 
