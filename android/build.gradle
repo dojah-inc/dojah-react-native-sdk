@@ -1,10 +1,4 @@
 
-  def gitPackagePropertiesFile = rootProject.file("local.properties")
-  def localProperties = new Properties()
-  localProperties.load(new FileInputStream(gitPackagePropertiesFile))
-
-  def dojah_name = localProperties["Dojah_NAME"]
-  def dojah_pass = localProperties["Dojah_PASS"]
 buildscript {
   // Buildscript is evaluated before everything else so we can't use getExtOrDefault
   def kotlin_version = rootProject.ext.has("kotlinVersion") ? rootProject.ext.get("kotlinVersion") : project.properties["DojahKyc_kotlinVersion"]
@@ -84,12 +78,6 @@ android {
     }
   }
 
-  // buildFeatures {
-  //   dataBinding = true
-  //   viewBinding = true
-  //   buildConfig = true
-  // }
-
   lintOptions {
     disable "GradleCompatible"
   }
@@ -104,13 +92,6 @@ repositories {
   google()
   mavenCentral()
   maven { url "https://jitpack.io" }
-  maven {
-    url = uri("https://maven.pkg.github.com/dojah-inc/sdk-kotlin")
-    credentials {
-      username = dojah_name
-      password = dojah_pass
-    }
-  }
 }
 
 
@@ -127,10 +108,8 @@ dependencies {
   implementation "com.facebook.react:react-native:+"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-  // implementation ("com.dojah_inc:dojah_android_sdk:0.0.3")
-  implementation ("com.dojah_inc:dojah_android_sdk:dev-0.1.7")
-  // implementation ("com.dojah_inc.kyc_sdk_kotlin:dev-0.1.6")
-  // implementation ("com.dojah.kyc_sdk_kotlin:dev-0.1.6")
+  implementation 'com.github.dojah-inc:sdk-kotlin:v0.0.1'
+
 
 }
 

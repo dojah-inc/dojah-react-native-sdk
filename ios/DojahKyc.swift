@@ -70,10 +70,13 @@ class DojahKyc: RCTEventEmitter, RCTBridgeDelegate {
         if(rootViewController as? UINavigationController != nil){
             DojahWidgetSDK.initialize(widgetID: widgetId,referenceID: referenceId,emailAddress: email, navController: rootViewController as! UINavigationController)
             //          DojahWidgetSDK.initializeNormal(widgetID: widgetId,referenceID: referenceId,emailAddress: email, uiController: nav!)
+            print("Launched...")
+            // print("cached count is: \(DojahWidgetSDK.getCachedWidgetIDs().count)")
+            print("native details: Launch=> email:\(email), referenceId:\(referenceId), widgetId:\(widgetId)")
+        }else{
+            print("rootViewController is nil")
         }
-        print("Launched...")
-        // print("cached count is: \(DojahWidgetSDK.getCachedWidgetIDs().count)")
-        print("native details: Launch=> email:\(email), referenceId:\(referenceId), widgetId:\(widgetId)")
+
     }
     
     // @objc(launchTest:withB:withResolver:withRejecter:)

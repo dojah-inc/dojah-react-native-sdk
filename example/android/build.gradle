@@ -1,9 +1,4 @@
-  def gitPackagePropertiesFile = rootProject.file("local.properties")
-def localProperties = new Properties()
-localProperties.load(new FileInputStream(gitPackagePropertiesFile))
 
-def dojah_name = project.properties["Dojah_NAME"]
-def dojah_pass = project.properties["Dojah_PASS"]
 buildscript {
   ext {
     buildToolsVersion = "34.0.0"
@@ -36,13 +31,6 @@ allprojects {
     google()
     mavenCentral()
     maven { url "https://jitpack.io" }
-    maven {
-        url = uri("https://maven.pkg.github.com/dojah-inc/sdk-kotlin")
-        credentials {
-          username = "dojah-inc"
-          password = "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"
-        }
-    }
   }
 }
 

@@ -21,11 +21,11 @@ const DojahKyc = NativeModules.DojahKyc
 /// call this before your app is registered
 /// the Sdk won't work on IOS without this
 /// @param appName: the name of your app
-export function initializeDojahIOS(appName: string) {
-  if(Platform.OS === 'ios'){
-    DojahKyc.initialize(appName);
-  }
-}
+// export function initializeDojahIOS(appName: string) {
+  // if(Platform.OS === 'ios'){
+  //   DojahKyc.initialize(appName);
+  // }
+// }
 
 export function launchDojahKyc(widgetId: string, referenceId?:string|null, email?: string|null) {
   if(Platform.OS === 'ios'){

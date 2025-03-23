@@ -23,9 +23,11 @@ target 'DojahKycExample' do
   # pod 'RealmSwift', '~> 10.52.2', :modular_headers => true
   # pod 'DojahWidget', :path => '../../sdk-swift-main/DojahWidget.podspec'
   pod 'Realm', '~> 10.52.2', :modular_headers => true
-  pod 'DojahWidget', :git => 'https://github.com/shittu33/test-react-native-ios.git', :tag => '1.0.1'
+  pod 'DojahWidget', :git => 'https://github.com/dojah-inc/sdk-swift.git', :branch => 'pod-package'
   use_react_native!(
     :path => config[:reactNativePath],
+    :hermes_enabled => false, # Set to true if using Hermes
+    :fabric_enabled => false, # Set to true if using Fabric  
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )

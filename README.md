@@ -11,7 +11,7 @@ npm install react-native-dojah_kyc
 
 ### Requirements
 * Minimum Android SDK version - 21
-* Supported targetSdkVersion - 34
+* Supported targetSdkVersion - 35
 
 In your android root/build.gradle file set maven path:
 ```
@@ -20,13 +20,6 @@ allprojects {
     repositories {
         ...
         maven { url "https://jitpack.io" }
-        maven {
-            url = uri("https://maven.pkg.github.com/dojah-inc/sdk-kotlin")
-            credentials {
-                username = "dojah-inc"
-                password = "[TO BE ADDED SOON]"
-            }
-        }
     }
 }
 ```
@@ -38,13 +31,6 @@ dependencyResolutionManagement {
     repositories {
         ...
         maven { url "https://jitpack.io" }
-        maven {
-            url = uri("https://maven.pkg.github.com/dojah-inc/sdk-kotlin")
-            credentials {
-                username = "dojah-inc"
-                password = "[TO BE ADDED SOON]"
-            }
-        }
     }
 }
 ```
