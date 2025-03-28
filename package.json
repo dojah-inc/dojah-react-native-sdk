@@ -1,6 +1,6 @@
 {
-  "name": "react-native-dojah_kyc",
-  "version": "0.0.4",
+  "name": "dojah-kyc-sdk-react_native",
+  "version": "0.0.5",
   "description": "Dojah SDK",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -26,7 +26,7 @@
     "!**/.*"
   ],
   "scripts": {
-    "example": "yarn workspace react-native-dojah_kyc-example",
+    "example": "yarn workspace dojah-kyc-sdk-react_native-example",
     "test": "jest",
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
@@ -41,14 +41,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shittu33/react-native-dojah_kyc.git"
+    "url": "git+https://github.com/dojah-inc/dojah-react-native-sdk.git"
   },
-  "author": "shittu33 <shittuabdulmujeeb@gmail.com> (https://github.com/shittu33)",
+  "author": "Dojah <dojah.io> (https://github.com/dojah-inc)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/shittu33/react-native-dojah_kyc/issues"
+    "url": "https://github.com/dojah-inc/dojah-react-native-sdk/issues"
   },
-  "homepage": "https://github.com/shittu33/react-native-dojah_kyc#readme",
+  "homepage": "https://github.com/dojah-inc/dojah-react-native-sdk#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },

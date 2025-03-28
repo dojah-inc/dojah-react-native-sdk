@@ -2,7 +2,7 @@
   "compilerOptions": {
     "rootDir": ".",
     "paths": {
-      "react-native-dojah_kyc": ["./src/index"]
+      "dojah-kyc-sdk-react_native": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

@@ -3103,6 +3103,18 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
+"dojah-kyc-sdk-react_native-example@file:/Users/village_square/node_project/dojah-react-native-sdk-dev/example":
+  version "0.0.1"
+  resolved "file:example"
+  dependencies:
+    dojah-kyc-sdk-react_native "file:.."
+    react "18.2.0"
+    react-native "0.74.2"
+
+"dojah-kyc-sdk-react_native@file:..":
+  version "0.0.5"
+  resolved "file:"
+
 dot-prop@^5.1.0:
   version "5.3.0"
   dependencies:
@@ -6013,13 +6025,6 @@ react-native-builder-bob@^0.20.0:
     yargs "^17.5.1"
   optionalDependencies:
     jetifier "^2.0.0"
-
-"react-native-dojah_kyc-example@file:/Users/village_square/node_project/dojah-react-native-sdk-dev/example":
-  version "0.0.1"
-  resolved "file:example"
-  dependencies:
-    react "18.2.0"
-    react-native "0.74.2"
 
 react-native@*, react-native@0.74.2:
   version "0.74.2"

@@ -4,7 +4,7 @@
 ## Installation
 
 ```sh
-npm install react-native-dojah_kyc
+npm install dojah-kyc-sdk-react_native
 ```
 
 ## Android Setup
@@ -122,7 +122,7 @@ NSLocationWhenInUseUsageDescription - describe why your app needs access to the 
 To start KYC, import Dojah in your React Native code, and launch Dojah Screen
 
 ```js
-import {launchDojahKyc } from 'react-native-dojah_kyc';
+import {launchDojahKyc } from 'dojah-kyc-sdk-react_native';
 
 launchDojahKyc(
   "{Required: Your_WidgetID}",

@@ -919,7 +919,7 @@ PODS:
   - React-Mapbuffer (0.74.2):
     - glog
     - React-debug
-  - react-native-dojah-kyc (0.0.4):
+  - react-native-dojah-kyc (0.0.5):
     - DojahWidget
     - DoubleConversion
     - glog
@@ -1383,7 +1383,7 @@ SPEC CHECKSUMS:
   React-jsitracing: 00f6151766dec0ab324e2854a9d4dfde0e1f30cc
   React-logger: 70e002e04cc56ff5c12157537405d1644c050703
   React-Mapbuffer: 8d1f0fc6e7280a8ed6da70ece5f283ac5c8032cb
-  react-native-dojah-kyc: c28e842044a782a8dfd10b446a6d3484b420e67f
+  react-native-dojah-kyc: 8fa52cc207051c55592b891fdbb48464c832b747
   React-nativeconfig: 9f223cd321823afdecf59ed00861ab2d69ee0fc1
   React-NativeModulesApple: 149a9ee6dae0f3246e9cdb65dd289231bd8dac10
   React-perflogger: 32ed45d9cee02cf6639acae34251590dccd30994

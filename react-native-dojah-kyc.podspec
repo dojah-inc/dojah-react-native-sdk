@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   
   s.platforms    = { :ios => '14.0' }
   s.swift_version = '5.0'
-  s.source       = { :git => "https://github.com/shittu33/react-native-dojah_kyc.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/dojah-inc/dojah-react-native-sdk.git", :tag => "#{s.version}" }
 
   s.source_files = "ios/**/*.{h,m,mm,swift}"
   s.dependency 'DojahWidget'

@@ -31,8 +31,16 @@
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Dojah Widget SDK needs Camera permission to capture images and ID documents for verification purposes</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Dojah Widget SDK to ensure the security and integrity of your account</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Dojah Widget SDK to ensure the security and integrity of your account</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Dojah Widget SDK needs Microphone permission to capture audio for verification purposes</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Dojah Widget SDK needs Photo Library permission to pick images and ID documents for verification purposes</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -47,23 +55,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSCameraUsageDescription</key>
-	<string>Dojah Widget SDK needs Camera permission to capture images and ID documents for verification purposes</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Dojah Widget SDK needs Microphone permission to capture audio for verification purposes</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Dojah Widget SDK needs Photo Library permission to pick images and ID documents for verification purposes</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Dojah Widget SDK to ensure the security and integrity of your account</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Dojah Widget SDK to ensure the security and integrity of your account</string>
-	<!-- <key>UIAppFonts</key>
-	<array>
-		<string>Atakk-Bold.ttf</string>
-		<string>Atakk-Medium.ttf</string>
-		<string>Atakk-Light.ttf</string>
-		<string>Atakk-Regular.ttf</string>
-		<string>Atakk-Semibold.ttf</string>
-	</array> -->
 </dict>
 </plist>

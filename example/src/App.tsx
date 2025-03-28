@@ -1,19 +1,19 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Button, TextInput } from 'react-native';
-import { launchDojahKyc } from 'react-native-dojah_kyc';
+import { launchDojahKyc } from 'dojah-kyc-sdk-react_native';
 // import { name as appName } from '../app.json';
 
-// import { getIdHistory } from 'react-native-dojah_kyc';
+// import { getIdHistory } from 'dojah-kyc-sdk-react_native';
 
 export default function App() {
   // const [result, setResult] = React.useState<string | null>();//65ae97f4afee1c0040c9df6a
-  const [widgetId, setWidgetId] = React.useState("6687b43b97a6dd0040ab4e5d");
-  const [email, setEmail] = React.useState("");
-  const [referenceId, setReferenceId] = React.useState("");
+  const [widgetId, setWidgetId] = React.useState('6687b43b97a6dd0040ab4e5d');
+  const [email, setEmail] = React.useState('');
+  const [referenceId, setReferenceId] = React.useState('');
 
   React.useEffect(() => {
-// initializeDojahIOS(appName);
+    // initializeDojahIOS(appName);
     // getIdHistory().then((value) => {
     //   var result = `${value?.entries?.length??"0"}`
     //   // if (value !== null) {
@@ -26,20 +26,32 @@ export default function App() {
   }, []);
 
   const onPress = () => {
-    const ref:string|null = referenceId==="" ?  null:referenceId;
-    const mail:string|null = email===""? null:email
-    launchDojahKyc(widgetId,ref,mail);
-  }
+    const ref: string | null = referenceId === '' ? null : referenceId;
+    const mail: string | null = email === '' ? null : email;
+    launchDojahKyc(widgetId, ref, mail);
+  };
   return (
-    <View
-      style={styles.container}
-    >
-      <TextInput style={styles.input} onChangeText={setWidgetId} defaultValue={widgetId}/>
-      <TextInput style={styles.input} onChangeText={setEmail} defaultValue={email} placeholder='Enter Email (Optional)'/>
-      <TextInput style={styles.input} onChangeText={setReferenceId} defaultValue={referenceId} placeholder='Reference Id(Optional)'/>
+    <View style={styles.container}>
+      <TextInput
+        style={styles.input}
+        onChangeText={setWidgetId}
+        defaultValue={widgetId}
+      />
+      <TextInput
+        style={styles.input}
+        onChangeText={setEmail}
+        defaultValue={email}
+        placeholder="Enter Email (Optional)"
+      />
+      <TextInput
+        style={styles.input}
+        onChangeText={setReferenceId}
+        defaultValue={referenceId}
+        placeholder="Reference Id(Optional)"
+      />
       {/* <Text style= {styles.history}>History: {result}</Text> */}
       <View style={styles.button}>
-      <Button  onPress={onPress} title='Launch Dojah' />
+        <Button onPress={onPress} title="Launch Dojah" />
       </View>
     </View>
   );
@@ -50,7 +62,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'stretch',
     justifyContent: 'center',
-    paddingHorizontal:40,
+    paddingHorizontal: 40,
   },
   box: {
     width: 60,
@@ -64,13 +76,13 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     padding: 10,
   },
-  history:{
+  history: {
     paddingBottom: 20,
     paddingStart: 10,
-    textAlign: "left"
+    textAlign: 'left',
   },
-  button:{
+  button: {
     paddingHorizontal: 60,
-    paddingTop:20,
-  }
+    paddingTop: 20,
+  },
 });
