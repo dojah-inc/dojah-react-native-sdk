@@ -3107,13 +3107,13 @@ doctrine@^3.0.0:
   version "0.0.1"
   resolved "file:example"
   dependencies:
-    dojah-kyc-sdk-react_native "file:.."
     react "18.2.0"
     react-native "0.74.2"
 
-"dojah-kyc-sdk-react_native@file:..":
+dojah-kyc-sdk-react_native@^0.0.5:
   version "0.0.5"
-  resolved "file:"
+  resolved "https://registry.npmjs.org/dojah-kyc-sdk-react_native/-/dojah-kyc-sdk-react_native-0.0.5.tgz"
+  integrity sha512-Qro/71hJQ6XD2gt6/wNuJX0uFMIsLfTZGVhULbj4jEvEZVQp6VIvpPE0xVdp/CY/3iDTOLqQdbFYZlnNs+7b+A==
 
 dot-prop@^5.1.0:
   version "5.3.0"
