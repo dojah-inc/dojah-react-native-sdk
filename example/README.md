@@ -1,79 +1,168 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Dojah KYC SDK (React Native)
 
-# Getting Started
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## Installation
 
-## Step 1: Start the Metro Server
-
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
-
-To start Metro, run the following command from the _root_ of your React Native project:
-
-```bash
-# using npm
-npm start
-
-# OR using Yarn
-yarn start
+```sh
+npm install dojah-kyc-sdk-react_native
 ```
 
-## Step 2: Start your Application
+## Android Setup
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+### Requirements
+* Minimum Android SDK version - 21
+* Supported targetSdkVersion - 35
 
-### For Android
-
-```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
+In your android root/build.gradle file set maven path:
+```
+...
+allprojects {
+    repositories {
+        ...
+        maven { url "https://jitpack.io" }
+    }
+}
+```
+Or Set maven path in your root/settings.gradle file:
+```
+...
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        ...
+        maven { url "https://jitpack.io" }
+    }
+}
 ```
 
-### For iOS
+### Permissions
+For Android you don't need to declare permissions, its already included in the Package.
 
-```bash
-# using npm
-npm run ios
+## IOS Setup
 
-# OR using Yarn
-yarn ios
+### Requirements
+* Minimum iOS version - 14
+
+### Add the following POD dependencies in your Podfile app under your App target
+
+```
+  pod 'Realm', '~> 10.52.2', :modular_headers => true
+  pod 'DojahWidget', :git => 'https://github.com/dojah-inc/sdk-swift.git', :branch => 'pod-package'
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+example
+```
+target 'Example' do
+  ...
+  pod 'Realm', '~> 10.52.2', :modular_headers => true
+  pod 'DojahWidget', :git => 'https://github.com/dojah-inc/sdk-swift.git', :branch => 'pod-package'
+  ...
+end
+```
+and run pod install in your ios folder:
+```sh
+cd ios
+pod install
+```
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
 
-## Step 3: Modifying your App
+### Make some few changes in your AppDelegate.mm file
 
-Now that you have successfully run the app, let's modify it.
+- Add the following imports:
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+```objective-c
+#import <React/RCTBridge.h>
+#import <React/RCTRootView.h>
+```
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+- Then replace application function in your AppDelegate with the following:
 
-## Congratulations! :tada:
+`REMEMBER TO CHANGE THE Your App Name,to the actual name of your App`
 
-You've successfully run and modified your React Native App. :partying_face:
+```objective-c
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-### Now what?
+  // Initialize the React Native bridge
+  RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+  RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
+                                                   moduleName:@"Your App Name"
+                                            initialProperties:nil];
 
-# Troubleshooting
+  UIViewController *rootViewController = [UIViewController new];
+  rootViewController.view = rootView;
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+  // Wrap rootViewController in a UINavigationController
+  UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
 
-# Learn More
+  self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+  self.window.rootViewController = navigationController;
+  [self.window makeKeyAndVisible];
 
-To learn more about React Native, take a look at the following resources:
+  return YES;
+}
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+```
+
+
+
+### Permissions
+For IOS, Add the following keys to your Info.plist file:
+
+NSCameraUsageDescription - describe why your app needs access to the camera. This is called Privacy - Camera Usage Description in the visual editor.
+
+NSMicrophoneUsageDescription - describe why your app needs access to the microphone, if you intend to record videos. This is called Privacy - Microphone Usage Description in the visual editor.
+
+NSLocationWhenInUseUsageDescription - describe why your app needs access to the location, if you intend to verify address/location. This is called Privacy - Location Usage Description in the visual editor.
+
+
+
+## Usage
+
+To start KYC, import Dojah in your React Native code, and launch Dojah Screen
+
+```js
+import {launchDojahKyc } from 'dojah-kyc-sdk-react_native';
+
+launchDojahKyc(
+  "{Required: Your_WidgetID}",
+  "{Optional: Reference_ID}",
+  “{Optional: Email_Address}”
+)
+
+```
+
+### SDK Parameters
+- `WidgetID` - a `REQUIRED` parameter. You get this ID when you sign up on the Dojah platform, follow the next step to generate your WidgetId.
+- `Reference ID` - an `OPTIONAL` parameter that allows you to initialize the SDK for an ongoing verification.
+- `Email Address` - an `OPTIONAL` parameter that allows you to initialize the SDK for an ongoing verification.
+
+## How to Get a Widget ID
+To use the SDK, you need a WidgetID, which is a required parameter for initializing the SDK. You can obtain this by creating a flow on the Dojah platform. Follow these steps to configure and get your Widget ID:
+
+```txt
+1. Log in to your Dojah Dashboard: If you don’t have an account, sign up on the Dojah platform.
+
+2. Navigate to the EasyOnboard Feature: Once logged in, find the EasyOnboard section on your dashboard.
+
+3. Create a Flow:
+
+    - Click on the 'Create a Flow' button.
+    - Name Your Flow: Choose a meaningful name for your flow, which will help you identify it later.
+
+4. Add an Application:
+
+    - Either create a new application or add an existing one.
+    - Customise your widget with your brand logo and color by selecting an application.
+
+5. Configure the Flow:
+
+    - Select a Country: Choose the country or countries relevant to your verification process.
+    - Select a Preview Process: Decide between automatic or manual verification.
+    - Notification Type: Choose how you’d like to receive notifications for updates (email, SMS, etc.).
+    - Add Verification Pages: Customize the verification steps in your flow (e.g., ID verification, address verification, etc.).
+
+6. Publish Your Widget: After configuring your flow, publish the widget. Once published, your flow is live.
+
+7. Copy Your Widget ID: After publishing, the platform will generate a Widget ID. Copy this Widget ID as you will need it to initialize the SDK as stated above.
+```
