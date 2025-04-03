@@ -108,7 +108,8 @@ dependencies {
   implementation "com.facebook.react:react-native:+"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-  implementation 'com.github.dojah-inc:sdk-kotlin:v0.0.2'
+  implementation 'com.github.dojah-inc:sdk-kotlin:0.0.1-dev'
+  // implementation 'com.github.dojah-inc:sdk-kotlin:v0.0.2'
 
 
 }

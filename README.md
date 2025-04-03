@@ -35,17 +35,6 @@ dependencyResolutionManagement {
 }
 ```
 
-In manifest add tools:replace="android:theme" at application level
-
-```xml
-    <application
-      ...
-      tools:replace="android:theme">
-      ...
-    </application>
-
-```
-
 ### Permissions
 For Android you don't need to declare permissions, its already included in the Package.
 
