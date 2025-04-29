@@ -1,6 +1,6 @@
 {
   "name": "dojah-kyc-sdk-react_native",
-  "version": "0.0.6-dev",
+  "version": "0.0.7-dev",
   "description": "Dojah SDK",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
