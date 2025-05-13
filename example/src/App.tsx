@@ -28,7 +28,71 @@ export default function App() {
   const onPress = () => {
     const ref: string | null = referenceId === '' ? null : referenceId;
     const mail: string | null = email === '' ? null : email;
-    launchDojahKyc(widgetId, ref, mail);
+
+    const userData = {
+      // firstName: 'John',
+      // lastName: 'Doe',
+      // dob: '1990-01-01',
+      // email: mail
+    };
+    const govData = {
+      // bvn: 'your-bvn',
+      // dl: 'your-dl',
+      // nin: 'your-nin',
+      // vnin: 'your-vnin'
+    };
+    const govId = {
+      // national: 'your-national-id',
+      // passport: 'your-passport-id',
+      // dl: 'your-dl-id',
+      // voter: 'your-voter-id',
+      // nin: 'your-nin-id',
+      // others: 'your-others-id'
+    };
+    const location = {
+      // latitude: 'your-latitude',
+      // longitude: 'your-longitude'
+    };
+    const businessData = {
+      // cac: 'your-cac'
+    };
+    const address = 'No 12 Street, Atilogun, Lagos, Nigeria';
+    const metadata = {
+      key1: 'value1',
+      key2: 'value2',
+    };
+
+    launchDojahKyc(
+      widgetId,
+      ref,
+      mail,
+      userData,
+      govData,
+      govId,
+      location,
+      businessData,
+      address,
+      metadata
+    ).then((result) => {
+      console.log('Result: ', result);
+      switch (result) {
+        case 'approved':
+          //kyc approved
+          console.log('KYC Approved');
+          break;
+        case 'pending':
+          //kyc pending
+          console.log('KYC Pending');
+          break;
+        case 'failed':
+          //kyc failed
+          console.log('KYC Failed');
+          break;
+        case 'closed':
+          //user has cancelled the KYC
+          console.log('KYC Closed');
+      }
+    });
   };
   return (
     <View style={styles.container}>
