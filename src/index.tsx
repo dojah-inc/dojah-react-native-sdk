@@ -9,13 +9,13 @@ const LINKING_ERROR =
 const DojahKyc = NativeModules.DojahKyc
   ? NativeModules.DojahKyc
   : new Proxy(
-      {},
-      {
-        get() {
-          throw new Error(LINKING_ERROR);
-        },
-      }
-    );
+    {},
+    {
+      get() {
+        throw new Error(LINKING_ERROR);
+      },
+    }
+  );
 
 /**
  * Launches the Dojah KYC flow
@@ -32,7 +32,7 @@ const DojahKyc = NativeModules.DojahKyc
  * @returns - the Promise of the result
  * @throws - an error if the Dojah KYC flow fails
  * @example
- *
+ * 
  * ```typescript
  * import { launchDojahKyc } from 'dojah-kyc-sdk-react_native';
  * const widgetId = 'your-widget-id';
@@ -78,7 +78,7 @@ const DojahKyc = NativeModules.DojahKyc
  *     console.error('Error: ', error);
  *   });
  * ```
- **/
+**/
 
 export function launchDojahKyc(
   widgetId: string,
@@ -93,20 +93,16 @@ export function launchDojahKyc(
   metadata: Object | null = null
 ): Promise<string | null> {
   if (Platform.OS === 'ios') {
-    return DojahKyc.launch(widgetId, referenceId ?? '', email ?? '');
+    return new Promise<string | null>((resolve, reject) => {
+      try {
+        DojahKyc.launch(widgetId, referenceId ?? '', email ?? '');
+        resolve("launched"); // Adjust this based on the actual return value of DojahKyc.launch
+      } catch (error) {
+        reject("closed");
+      }
+    });
   } else {
-    return DojahKyc.launch(
-      widgetId,
-      referenceId,
-      email,
-      userData,
-      govData,
-      govId,
-      location,
-      businessData,
-      address,
-      metadata
-    );
+    return DojahKyc.launch(widgetId, referenceId, email, userData, govData, govId, location, businessData, address, metadata);
   }
 }
 
