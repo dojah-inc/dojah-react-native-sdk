@@ -1,4 +1,4 @@
-package com.dojahkyc
+package com.dojahkyc.rn
 
 import com.facebook.react.ReactPackage
 import com.facebook.react.bridge.NativeModule

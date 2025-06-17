@@ -2,9 +2,7 @@ import * as React from 'react';
 
 import { StyleSheet, View, Button, TextInput } from 'react-native';
 import { launchDojahKyc } from 'dojah-kyc-sdk-react_native';
-// import { name as appName } from '../app.json';
 
-// import { getIdHistory } from 'dojah-kyc-sdk-react_native';
 
 export default function App() {
   // const [result, setResult] = React.useState<string | null>();//65ae97f4afee1c0040c9df6a
@@ -36,9 +34,9 @@ export default function App() {
       // email: mail
     };
     const govData = {
-      // bvn: 'your-bvn',
+      bvn: '',
       // dl: 'your-dl',
-      // nin: 'your-nin',
+      nin: '91081986349',
       // vnin: 'your-vnin'
     };
     const govId = {
@@ -56,11 +54,11 @@ export default function App() {
     const businessData = {
       // cac: 'your-cac'
     };
-    const address = 'No 12 Street, Atilogun, Lagos, Nigeria';
-    const metadata = {
-      key1: 'value1',
-      key2: 'value2',
-    };
+    // const address = 'No 12 Street, Atilogun, Lagos, Nigeria';
+    // const metadata = {
+    //   key1: 'value1',
+    //   key2: 'value2',
+    // };
 
     launchDojahKyc(
       widgetId,
@@ -71,8 +69,8 @@ export default function App() {
       govId,
       location,
       businessData,
-      address,
-      metadata
+      null,
+      null
     ).then((result) => {
       console.log('Result: ', result);
       switch (result) {

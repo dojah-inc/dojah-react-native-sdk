@@ -92,18 +92,11 @@ export function launchDojahKyc(
   address: string | null = null,
   metadata: Object | null = null
 ): Promise<string | null> {
-  if (Platform.OS === 'ios') {
-    return new Promise<string | null>((resolve, reject) => {
-      try {
-        DojahKyc.launch(widgetId, referenceId ?? '', email ?? '');
-        resolve("launched"); // Adjust this based on the actual return value of DojahKyc.launch
-      } catch (error) {
-        reject("closed");
-      }
-    });
-  } else {
-    return DojahKyc.launch(widgetId, referenceId, email, userData, govData, govId, location, businessData, address, metadata);
-  }
+    return DojahKyc.launch(
+      widgetId, referenceId, email, userData,
+      govData, govId, location, businessData,
+      address, metadata
+    );
 }
 
 export function getIdHistory(): Promise<Map<string, string> | null> {

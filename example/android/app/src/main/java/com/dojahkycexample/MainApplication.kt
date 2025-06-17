@@ -1,4 +1,4 @@
-package com.dojahkycexample
+package com.dojahkyc.example
 
 import android.app.Application
 import com.facebook.react.PackageList

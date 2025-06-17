@@ -1,0 +1,9 @@
+{
+  "platforms": ["apple", "android", "web"],
+  "apple": {
+    "modules": ["DojahKyc"]
+  },
+  "android": {
+    "modules": ["com.dojahkyc.rn.DojahKycModule"]
+  }
+}

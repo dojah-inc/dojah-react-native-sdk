@@ -35,6 +35,14 @@ dependencyResolutionManagement {
 }
 ```
 
+### Enable Jetifier
+Enable Jetifier in android/gradle.properties
+
+```
+  android.enableJetifier=true
+```
+
+
 ### Permissions
 For Android you don't need to declare permissions, its already included in the Package.
 
