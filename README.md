@@ -133,8 +133,8 @@ To start KYC, import Dojah in your React Native code, and launch Dojah Screen
 import {launchDojahKyc } from 'dojah-kyc-sdk-react_native';
 
 
-/** 
- * The following parameters are available 
+/**
+ * The following parameters are available
  * for launching the flow.
 */
 
@@ -213,11 +213,11 @@ const metadata = {
   key2: 'value2'
 };
 
-/** 
- * to launch the flow only [widgetId] is mandatory  
+/**
+ * to launch the flow only [widgetId] is mandatory
  * @returns - the Promise of the result, promise
- * will return a status that you can use to track 
- * the immidiate progress. 
+ * will return a status that you can use to track
+ * the immidiate progress.
  * @throws - an error if the Dojah KYC flow fails
 */
 launchDojahKyc(
@@ -258,6 +258,7 @@ launchDojahKyc(
 - `WidgetID` - a `REQUIRED` parameter. You get this ID when you sign up on the Dojah platform, follow the next step to generate your WidgetId.
 - `Reference ID` - an `OPTIONAL` parameter that allows you to initialize the SDK for an ongoing verification.
 - `Email Address` - an `OPTIONAL` parameter that allows you to initialize the SDK for an ongoing verification.
+- `ExtraUserData` - an `OPTIONAL` parameter that allows you to pass custom data to the SDK.
 
 ## How to Get a Widget ID
 To use the SDK, you need a WidgetID, which is a required parameter for initializing the SDK. You can obtain this by creating a flow on the Dojah platform. Follow these steps to configure and get your Widget ID:
@@ -287,4 +288,114 @@ To use the SDK, you need a WidgetID, which is a required parameter for initializ
 6. Publish Your Widget: After configuring your flow, publish the widget. Once published, your flow is live.
 
 7. Copy Your Widget ID: After publishing, the platform will generate a Widget ID. Copy this Widget ID as you will need it to initialize the SDK as stated above.
+```
+
+
+## TroubleShooting
+
+### Android ProGuard/R8 Configuration for Release Builds
+When building your Android application in release mode with code shrinking (R8/ProGuard) enabled, you might encounter issues where the SDK or its dependencies fail to function correctly. This happens because R8, the default code shrinker, might remove classes or methods that are used by the SDK but aren't explicitly referenced in a way R8 can detect.
+
+If you experience crashes or unexpected behavior related to missing classes (often indicated by errors like ClassNotFoundException or Missing classes detected while running R8), you'll need to add specific "keep" rules to your project's ProGuard configuration.
+
+### How to Apply ProGuard Rules
+
+Locate your ProGuard file: In your Flutter project, navigate to android/app/proguard-rules.pro. If this file doesn't exist, create it.
+
+Add the necessary rules: Open the proguard-rules.pro file and add the following lines. These rules instruct R8 to preserve the essential components of the Dojah SDK and its underlying libraries during the build process.
+
+```
+# These are essential for React Native's internal mechanisms and module linking.
+-keepclassmembers class com.facebook.react.bridge.JavaModule$$Props { *; }
+-keepclassmembers class com.facebook.react.bridge.ModuleSpec { *; }
+-keepclassmembers class * implements com.facebook.react.bridge.JavaScriptModule { *; }
+-keepclassmembers class * implements com.facebook.react.bridge.NativeModule { *; }
+
+# Prevents the stripping of unused methods in classes that are accessed dynamically.
+-keep public class * extends com.facebook.react.bridge.ViewManager { *; }
+-keep public class * extends com.facebook.react.uimanager.ViewManager { *; } # Older versions might use this
+
+# Keep React Native module classes and their constructors.
+# This is crucial for autolinking and manual linking.
+-keep class * implements com.facebook.react.bridge.NativeModule {
+    <init>(...);
+}
+-keep class * extends com.facebook.react.bridge.BaseJavaModule {
+    <init>(...);
+}
+-keep class * extends com.facebook.react.uimanager.ViewManager {
+    <init>(...);
+}
+
+# Standard dontwarn rules for common React Native dependencies
+-dontwarn com.facebook.react.**
+-dontwarn com.facebook.jni.**
+-dontwarn com.facebook.soloader.**
+-dontwarn com.facebook.yoga.**
+-dontwarn javax.annotation.**
+
+# Keep gRPC-related classes
+-keep class io.grpc.** { *; }
+-keep class com.google.android.libraries.places.** { *; }
+
+
+-keepnames class io.grpc.internal.**
+-keepclassmembers class io.grpc.internal.** { *; }
+-dontwarn io.grpc.**
+
+
+-keep class com.dojah.kyc_sdk_kotlin.domain.** { *; }
+-keep class com.dojah.kyc_sdk_kotlin.core.Result
+
+#For retrofit
+-keepattributes Signature, InnerClasses, EnclosingMethod
+-keepattributes RuntimeVisibleAnnotations, RuntimeVisibleParameterAnnotations
+-keepattributes AnnotationDefault
+-keepclassmembers,allowshrinking,allowobfuscation interface * {
+    @retrofit2.http.* <methods>;
+}
+-dontwarn javax.annotation.**
+-dontwarn kotlin.Unit
+-dontwarn retrofit2.KotlinExtensions
+-dontwarn retrofit2.KotlinExtensions$*
+-if interface * { @retrofit2.http.* <methods>; }
+-keep,allowobfuscation interface <1>
+-keep,allowobfuscation,allowshrinking interface retrofit2.Call
+-keep,allowobfuscation,allowshrinking class retrofit2.Response
+-keep,allowobfuscation,allowshrinking class kotlin.coroutines.Continuation
+
+#For Okio
+-dontwarn org.codehaus.mojo.animal_sniffer.*
+
+#For Gson
+-keep class sun.misc.Unsafe { *; }
+-keep class com.google.gson.examples.android.model.** { *; }
+
+#For Glide
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep class * extends com.bumptech.glide.module.AppGlideModule {
+ <init>(...);
+}
+-keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
+}
+-keep class com.bumptech.glide.load.data.ParcelFileDescriptorRewinder$InternalRewinder {
+  *** rewind();
+}
+```
+
+Ensure ProGuard is enabled: Verify that proguardFiles is pointing to the default Android ProGuard rules and your custom proguard-rules.pro file. This tells R8 to use your added rules.
+Your release build type block should look similar to this:
+
+``` groovy
+android {
+    buildTypes {
+        release {
+            // ... other configurations like signingConfig
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
 ```
