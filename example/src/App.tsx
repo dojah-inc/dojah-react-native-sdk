@@ -3,7 +3,6 @@ import * as React from 'react';
 import { StyleSheet, View, Button, TextInput } from 'react-native';
 import { launchDojahKyc } from 'dojah-kyc-sdk-react_native';
 
-
 export default function App() {
   // const [result, setResult] = React.useState<string | null>();//65ae97f4afee1c0040c9df6a
   const [widgetId, setWidgetId] = React.useState('6687b43b97a6dd0040ab4e5d');
