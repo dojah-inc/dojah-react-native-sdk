@@ -55,7 +55,7 @@ def supportsNamespace() {
 
 android {
   if (supportsNamespace()) {
-    namespace "com.dojahkyc"
+    namespace "com.dojahkyc.rn"
 
     sourceSets {
       main {
@@ -74,6 +74,8 @@ android {
 
   buildTypes {
     release {
+      proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+
       minifyEnabled true
     }
   }

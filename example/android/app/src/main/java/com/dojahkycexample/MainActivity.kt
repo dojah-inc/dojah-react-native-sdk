@@ -1,4 +1,4 @@
-package com.dojahkycexample
+package com.dojahkyc.example
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

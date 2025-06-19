@@ -1,9 +1,7 @@
-package com.dojahkyc
+package com.dojahkyc.rn
 
 import android.app.Activity
-import android.app.Activity.RESULT_OK
 import android.content.Intent
-import android.widget.Toast
 import com.dojah.kyc_sdk_kotlin.DojahSdk
 import com.dojah.kyc_sdk_kotlin.DOJAH_RESULT_KEY
 // import com.dojah.kyc_sdk_kotlin.BACKWARD_CALL_REQUEST_CODE
@@ -15,9 +13,6 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.bridge.WritableMap
 import com.facebook.react.bridge.WritableNativeMap
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import com.facebook.react.bridge.ReadableMap
 import com.dojah.kyc_sdk_kotlin.domain.UserData
 import com.dojah.kyc_sdk_kotlin.domain.GovData
@@ -93,13 +88,13 @@ class DojahKycModule(private val reactContext: ReactApplicationContext) :
             cac = businessData?.getString("cac")
           ),
           address = address,
-          metadata = metadata?.toHashMap()
+          metadata = metadata?.toHashMap() as? Map<String, Any>
         ))
     } catch (e: Exception) {
         // this.promise.reject("LAUNCH_ERROR", e.message, e)
         // this.promise = null
     }
-    
+
   }
 
 

@@ -21,12 +21,12 @@
 RCT_EXTERN_METHOD(initialize:(NSString)appName)
 
 
-RCT_EXTERN_METHOD(launch:(NSString)widgetId withReferenceId:(NSString)referenceId withEmail:(NSString)email)
-
- + (BOOL)requiresMainQueueSetup
- {
-   return NO;
- }
-
+RCT_EXTERN_METHOD(
+    launch:(NSString *)widgetId
+    withReferenceId:(NSString *)referenceId
+    withEmail:(NSString *)email
+    resolver:(RCTPromiseResolveBlock)resolve
+    rejecter:(RCTPromiseRejectBlock)reject
+)
 @end
 
