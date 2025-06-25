@@ -89,11 +89,18 @@ class DojahKyc: RCTEventEmitter, RCTBridgeDelegate {
     }
 
 
-  @objc(launch:withReferenceId:withEmail:resolver:rejecter:)
+  @objc(launch:withReferenceId:withEmail:withUserData:withGovData:withGovId:withLocation:withBuisnessData:withAddress:withMetaData:resolver:rejecter:)
     func launch(
       _ widgetId:String,
       withReferenceId referenceId:String,
       withEmail email:String,
+      withUserData userData : NSDictionary? = nil,
+      withGovData govData: NSDictionary? = nil,
+      withGovId govId: NSDictionary? = nil,
+      withLocation location: NSDictionary? = nil,
+      withBuisnessData businessData: NSDictionary? = nil,
+      withAddress address: String = "",
+      withMetaData metadata: NSDictionary? = nil,
       resolver resolve: @escaping RCTPromiseResolveBlock,
       rejecter reject: @escaping RCTPromiseRejectBlock
     ) {
@@ -121,7 +128,21 @@ class DojahKyc: RCTEventEmitter, RCTBridgeDelegate {
 
        if(navCtrl != nil){
            do{
-             DojahWidgetSDK.initialize(widgetID: widgetId,referenceID: referenceId,emailAddress: email, navController: navCtrl!)
+             
+             DojahWidgetSDK.initialize(
+               widgetID: widgetId,
+               referenceID: referenceId,
+               emailAddress: email,
+               extraUserData: ExtraUserData(
+               userData: mapToUserBioData(from: userData),
+               govData: mapToExtraGovData(from: govData),
+               govId: mapToExtraGovIdData(from: govId),
+               location: mapToExtraLocationData(from: location),
+               businessData: mapToExtraBusinessData(from: businessData),
+               metadata: metadata as? [String : Any]
+           ),
+           navController: navCtrl!)
+             
            }catch{
              reject("no-launch", "Could not launch Dojah Widget", error)
            }
@@ -133,3 +154,59 @@ class DojahKyc: RCTEventEmitter, RCTBridgeDelegate {
     }
 
 }
+
+
+
+// Mapping functions for each sub-struct
+func mapToUserBioData(from dictionary: NSDictionary?) -> UserBioData? {
+    guard let userData = dictionary else { return nil }
+  
+    return UserBioData(
+        firstName: userData["first_name"] as? String,
+        lastName: userData["last_name"] as? String,
+        dob: userData["dob"] as? String,
+        email: userData["email"] as? String
+    )
+}
+
+func mapToExtraGovData(from dictionary: NSDictionary?) -> ExtraGovData? {
+    guard let govData = dictionary else { return nil }
+    
+    return ExtraGovData(
+        bvn: govData["bvn"] as? String,
+        dl: govData["dl"] as? String,
+        nin: govData["nin"] as? String,
+        vnin: govData["vnin"] as? String
+    )
+}
+
+func mapToExtraGovIdData(from dictionary: NSDictionary?) -> ExtraGovIdData? {
+    guard let govId = dictionary else { return nil }
+    
+    return ExtraGovIdData(
+        national: govId["national"] as? String,
+        passport: govId["passport"] as? String,
+        dl: govId["dl"] as? String,
+        voter: govId["voter"] as? String,
+        nin: govId["nin"] as? String,
+        others: govId["others"] as? String
+    )
+}
+
+func mapToExtraLocationData(from dictionary: NSDictionary?) -> ExtraLocationData? {
+    guard let location = dictionary else { return nil }
+    
+    return ExtraLocationData(
+        longitude: location["longitude"] as? String,
+        latitude: location["latitude"] as? String
+    )
+}
+
+func mapToExtraBusinessData(from dictionary: NSDictionary?) -> ExtraBusinessData? {
+    guard let businessData = dictionary else { return nil }
+    
+    return ExtraBusinessData(
+        cac: businessData["cac"] as? String
+    )
+}
+

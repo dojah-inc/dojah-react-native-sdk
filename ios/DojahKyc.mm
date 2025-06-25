@@ -20,11 +20,18 @@
 
 RCT_EXTERN_METHOD(initialize:(NSString)appName)
 
-
+//launch:withReferenceId:withEmail:withUserData:withGovData:withGovId:withLocation:withBuisnessData:withAddress:withMetaData:resolver:rejecter:
 RCT_EXTERN_METHOD(
     launch:(NSString *)widgetId
     withReferenceId:(NSString *)referenceId
     withEmail:(NSString *)email
+    withUserData:(NSDictionary *)userData
+    withGovData:(NSDictionary *)govData
+    withGovId:(NSDictionary *)govId
+    withLocation:(NSDictionary *)location
+    withBuisnessData:(NSDictionary *)businessData
+    withAddress:(NSString *)address
+    withMetaData:(NSDictionary *)metadata
     resolver:(RCTPromiseResolveBlock)resolve
     rejecter:(RCTPromiseRejectBlock)reject
 )

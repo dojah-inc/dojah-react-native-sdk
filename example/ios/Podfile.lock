@@ -1,6 +1,6 @@
 PODS:
   - boost (1.83.0)
-  - DojahWidget (1.0.2):
+  - DojahWidget (1.0.4):
     - GooglePlaces (~> 8.5.0)
     - HorizonCalendar (~> 1.16.0)
     - IQKeyboardManagerSwift (~> 7.1.1)
@@ -1163,7 +1163,7 @@ PODS:
 
 DEPENDENCIES:
   - boost (from `../node_modules/react-native/third-party-podspecs/boost.podspec`)
-  - DojahWidget (from `https://github.com/dojah-inc/sdk-swift.git`, branch `pod-package`)
+  - DojahWidget (from `https://github.com/dojah-inc/sdk-swift.git`, tag `v1.0.0`)
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - fmt (from `../node_modules/react-native/third-party-podspecs/fmt.podspec`)
@@ -1235,8 +1235,8 @@ EXTERNAL SOURCES:
   boost:
     :podspec: "../node_modules/react-native/third-party-podspecs/boost.podspec"
   DojahWidget:
-    :branch: pod-package
     :git: https://github.com/dojah-inc/sdk-swift.git
+    :tag: v1.0.0
   DoubleConversion:
     :podspec: "../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec"
   FBLazyVector:
@@ -1344,12 +1344,12 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   DojahWidget:
-    :commit: cb159937da593c761a26c29b94dd664c355d86b8
     :git: https://github.com/dojah-inc/sdk-swift.git
+    :tag: v1.0.0
 
 SPEC CHECKSUMS:
   boost: d3f49c53809116a5d38da093a8aa78bf551aed09
-  DojahWidget: a89fe1aefb3dbb42f4886fa2d1e9977bf37b364d
+  DojahWidget: 788dbfbd422f99b740828234567c46e62c722029
   DoubleConversion: 76ab83afb40bddeeee456813d9c04f67f78771b5
   FBLazyVector: 4bc164e5b5e6cfc288d2b5ff28643ea15fa1a589
   fmt: 4c2741a687cc09f0634a2e2c72a838b99f1ff120
@@ -1411,6 +1411,6 @@ SPEC CHECKSUMS:
   SocketRocket: abac6f5de4d4d62d24e11868d7a2f427e0ef940d
   Yoga: ae3c32c514802d30f687a04a6a35b348506d411f
 
-PODFILE CHECKSUM: 2684dd4139c9e129045a0d6255d100a837bd3d54
+PODFILE CHECKSUM: 3f7ae72ecfcdc8ad134c12fea50a17402f3b1b13
 
 COCOAPODS: 1.16.2
