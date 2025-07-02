@@ -23,7 +23,7 @@ export default function App() {
     // });
   }, []);
 
-  const onPress = () => {
+  const onPress = async () => {
     const ref: string | null = referenceId === '' ? null : referenceId;
     const mail: string | null = email === '' ? null : email;
 
@@ -60,7 +60,7 @@ export default function App() {
     //   key2: 'value2',
     // };
 
-    launchDojahKyc(
+     launchDojahKyc(
       widgetId,
       ref,
       mail,
