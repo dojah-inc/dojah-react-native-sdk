@@ -10,7 +10,6 @@
 
 # Keep React Native module classes and their constructors.
 # This is crucial for autolinking and manual linking.
--keep @com.facebook.react.module.model.ReactModule annotation interface * { ; }
 -keep class * implements com.facebook.react.bridge.NativeModule {
     <init>(...);
 }
@@ -20,11 +19,6 @@
 -keep class * extends com.facebook.react.uimanager.ViewManager {
     <init>(...);
 }
-
-# Allow obfuscation of the React Native JNI/C++ glue code
--dontobfuscate public class * extends com.facebook.proguard.annotations.DoNotStrip {}
--dontshrink public class * extends com.facebook.proguard.annotations.DoNotStrip {}
--dontoptimize public class * extends com.facebook.proguard.annotations.DoNotStrip {}
 
 # Standard dontwarn rules for common React Native dependencies
 -dontwarn com.facebook.react.**
