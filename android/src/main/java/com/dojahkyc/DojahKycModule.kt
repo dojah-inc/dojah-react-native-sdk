@@ -93,7 +93,7 @@ class DojahKycModule(private val reactContext: ReactApplicationContext) :
             cac = businessData?.getString("cac")
           ),
           address = address,
-          metadata = metadata?.toHashMap()
+          metadata = metadata?.toHashMap() as? Map<String, Any>
         ))
     } catch (e: Exception) {
         // this.promise.reject("LAUNCH_ERROR", e.message, e)
@@ -114,7 +114,7 @@ class DojahKycModule(private val reactContext: ReactApplicationContext) :
   }
 
 
-  override fun onActivityResult(activity:Activity?,requestCode: Int, resultCode: Int, data: Intent?) {
+  override fun onActivityResult(activity: Activity, requestCode: Int, resultCode: Int, data: Intent?) {
     if (requestCode == BACKWARD_CALL_REQUEST_CODE) {
         if (resultCode == Activity.RESULT_OK) {
             val result = data?.getStringExtra(DOJAH_RESULT_KEY)
@@ -126,7 +126,9 @@ class DojahKycModule(private val reactContext: ReactApplicationContext) :
     }
   }
 
-  override fun onNewIntent(intent: Intent?) {
+  override fun onNewIntent(intent: Intent) {
+    // Intent is guaranteed to be non-null in React Native New Architecture
+    // No implementation needed for this use case
   }
 
   companion object {

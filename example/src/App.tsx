@@ -1,10 +1,22 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Button, TextInput } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Button,
+  TextInput,
+  NativeEventEmitter,
+  NativeModules,
+  Platform,
+} from 'react-native';
 import { launchDojahKyc } from 'dojah-kyc-sdk-react_native';
 // import { name as appName } from '../app.json';
 
 // import { getIdHistory } from 'dojah-kyc-sdk-react_native';
+
+// Only create event emitter on iOS (Android uses promises, not events)
+const eventEmitter =
+  Platform.OS === 'ios' ? new NativeEventEmitter(NativeModules.DojahKyc) : null;
 
 export default function App() {
   // const [result, setResult] = React.useState<string | null>();//65ae97f4afee1c0040c9df6a
@@ -13,22 +25,29 @@ export default function App() {
   const [referenceId, setReferenceId] = React.useState('');
 
   React.useEffect(() => {
-    // initializeDojahIOS(appName);
-    // getIdHistory().then((value) => {
-    //   var result = `${value?.entries?.length??"0"}`
-    //   // if (value !== null) {
-    //   //   for (let [k, v] of value) {
-    //   //     result += `${k}: ${v}`
-    //   //   }
-    //   // }
-    //   setResult(result)
-    // });
+    // Register event listener only on iOS to prevent "no listeners" warning
+    // Android uses promises instead of events
+    if (Platform.OS === 'ios' && eventEmitter) {
+      const subscription = eventEmitter.addListener('onChange', (event) => {
+        console.log('Dojah onChange event:', event);
+      });
+
+      // Cleanup listener on unmount
+      return () => {
+        subscription.remove();
+      };
+    }
+    // Android doesn't use events, so no cleanup needed
+    return undefined;
   }, []);
 
   const onPress = () => {
     const ref: string | null = referenceId === '' ? null : referenceId;
     const mail: string | null = email === '' ? null : email;
 
+    console.log('ref: ', ref);
+    console.log('mail: ', mail);
+    console.log('widgetId: ', widgetId);
     const userData = {
       // firstName: 'John',
       // lastName: 'Doe',

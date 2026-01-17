@@ -21,7 +21,7 @@
 RCT_EXTERN_METHOD(initialize:(NSString)appName)
 
 
-RCT_EXTERN_METHOD(launch:(NSString)widgetId withReferenceId:(NSString)referenceId withEmail:(NSString)email)
+RCT_EXTERN_METHOD(launch:(NSString)widgetId withReferenceId:(id)referenceId withEmail:(id)email)
 
  + (BOOL)requiresMainQueueSetup
  {
