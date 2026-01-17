@@ -48,6 +48,8 @@ export default function App() {
     console.log('ref: ', ref);
     console.log('mail: ', mail);
     console.log('widgetId: ', widgetId);
+
+    // Define individual data objects
     const userData = {
       // firstName: 'John',
       // lastName: 'Doe',
@@ -81,17 +83,25 @@ export default function App() {
       key2: 'value2',
     };
 
+    // Build extraData object as prescribed by the docs
+    // Structure: { userData, govData, govId, location, businessData, address, metadata }
+    const extraData: any = {};
+    if (Object.keys(userData).length > 0) extraData.userData = userData;
+    if (Object.keys(govData).length > 0) extraData.govData = govData;
+    if (Object.keys(govId).length > 0) extraData.govId = govId;
+    if (Object.keys(location).length > 0) extraData.location = location;
+    if (Object.keys(businessData).length > 0)
+      extraData.businessData = businessData;
+    if (address) extraData.address = address;
+    if (Object.keys(metadata).length > 0) extraData.metadata = metadata;
+
+    // Launch Dojah KYC with extraData object (matching docs structure)
+    // DojahKycSdk.launch(widgetId, referenceId, email, { userData, govData, govId, location, businessData, address, metadata })
     launchDojahKyc(
       widgetId,
       ref,
       mail,
-      userData,
-      govData,
-      govId,
-      location,
-      businessData,
-      address,
-      metadata
+      Object.keys(extraData).length > 0 ? extraData : null
     ).then((result) => {
       console.log('Result: ', result);
       switch (result) {

@@ -46,13 +46,7 @@ class DojahKycModule(private val reactContext: ReactApplicationContext) :
     widgetId: String,
     referenceId: String? = null,
     email: String? = null,
-    userData: ReadableMap? = null,
-    govData: ReadableMap? = null,
-    govId: ReadableMap? = null,
-    location: ReadableMap? = null,
-    businessData: ReadableMap? = null,
-    address: String? = null,
-    metadata: ReadableMap? = null,
+    extraData: ReadableMap? = null,
     promise: Promise
   ) {
     val activity = currentActivity
@@ -63,6 +57,15 @@ class DojahKycModule(private val reactContext: ReactApplicationContext) :
     }
     this.promise = promise
     try {
+      // Extract individual data from extraData object
+      val userData = extraData?.getMap("userData")
+      val govData = extraData?.getMap("govData")
+      val govId = extraData?.getMap("govId")
+      val location = extraData?.getMap("location")
+      val businessData = extraData?.getMap("businessData")
+      val address = extraData?.getString("address")
+      val metadata = extraData?.getMap("metadata")
+
       DojahSdk.with(reactContext)
         .launchWithBackwardCompatibility(activity, widgetId, referenceId, email, extraData = ExtraUserData(
           userData = UserData(

@@ -202,8 +202,15 @@ class DojahKyc: RCTEventEmitter, RCTBridgeDelegate {
         }
     }
     
-    @objc(launch:withReferenceId:withEmail:)
-    func launch(widgetId:String, referenceId:Any?, email:Any?) -> Void {
+    @objc(launch:withReferenceId:withEmail:withExtraData:withResolver:withRejecter:)
+    func launch(
+        widgetId: String,
+        referenceId: Any?,
+        email: Any?,
+        extraData: Any?,
+        resolve: @escaping RCTPromiseResolveBlock,
+        reject: @escaping RCTPromiseRejectBlock
+    ) -> Void {
         // Handle null values - JavaScript null becomes NSNull in Objective-C
         // Convert NSNull or nil to empty string
         let safeReferenceId: String = {
@@ -220,8 +227,81 @@ class DojahKyc: RCTEventEmitter, RCTBridgeDelegate {
             return (email as? String) ?? ""
         }()
         
+        // Parse extraData from React Native
+        // extraData is a dictionary containing: userData, govData, govId, location, businessData, address, metadata
+        var parsedExtraData: [String: Any]? = nil
+        
+        if let extraDataDict = extraData as? [String: Any], !extraDataDict.isEmpty {
+            parsedExtraData = [:]
+            
+            // Parse userData
+            if let userData = extraDataDict["userData"] as? [String: Any], !userData.isEmpty {
+                var parsedUserData: [String: Any] = [:]
+                if let firstName = userData["firstName"] as? String { parsedUserData["firstName"] = firstName }
+                if let lastName = userData["lastName"] as? String { parsedUserData["lastName"] = lastName }
+                if let dob = userData["dob"] as? String { parsedUserData["dob"] = dob }
+                if let email = userData["email"] as? String { parsedUserData["email"] = email }
+                if !parsedUserData.isEmpty { parsedExtraData?["userData"] = parsedUserData }
+            }
+            
+            // Parse govData
+            if let govData = extraDataDict["govData"] as? [String: Any], !govData.isEmpty {
+                var parsedGovData: [String: Any] = [:]
+                if let bvn = govData["bvn"] as? String { parsedGovData["bvn"] = bvn }
+                if let dl = govData["dl"] as? String { parsedGovData["dl"] = dl }
+                if let nin = govData["nin"] as? String { parsedGovData["nin"] = nin }
+                if let vnin = govData["vnin"] as? String { parsedGovData["vnin"] = vnin }
+                if !parsedGovData.isEmpty { parsedExtraData?["govData"] = parsedGovData }
+            }
+            
+            // Parse govId
+            if let govId = extraDataDict["govId"] as? [String: Any], !govId.isEmpty {
+                var parsedGovId: [String: Any] = [:]
+                if let national = govId["national"] as? String { parsedGovId["national"] = national }
+                if let passport = govId["passport"] as? String { parsedGovId["passport"] = passport }
+                if let dl = govId["dl"] as? String { parsedGovId["dl"] = dl }
+                if let voter = govId["voter"] as? String { parsedGovId["voter"] = voter }
+                if let nin = govId["nin"] as? String { parsedGovId["nin"] = nin }
+                if let others = govId["others"] as? String { parsedGovId["others"] = others }
+                if !parsedGovId.isEmpty { parsedExtraData?["govId"] = parsedGovId }
+            }
+            
+            // Parse location
+            if let location = extraDataDict["location"] as? [String: Any], !location.isEmpty {
+                var parsedLocation: [String: Any] = [:]
+                if let latitude = location["latitude"] as? String { parsedLocation["latitude"] = latitude }
+                if let longitude = location["longitude"] as? String { parsedLocation["longitude"] = longitude }
+                if !parsedLocation.isEmpty { parsedExtraData?["location"] = parsedLocation }
+            }
+            
+            // Parse businessData
+            if let businessData = extraDataDict["businessData"] as? [String: Any], !businessData.isEmpty {
+                var parsedBusinessData: [String: Any] = [:]
+                if let cac = businessData["cac"] as? String { parsedBusinessData["cac"] = cac }
+                if !parsedBusinessData.isEmpty { parsedExtraData?["businessData"] = parsedBusinessData }
+            }
+            
+            // Parse address
+            if let address = extraDataDict["address"] {
+                if !(address is NSNull) {
+                    if let addressString = address as? String {
+                        parsedExtraData?["address"] = addressString
+                    }
+                }
+            }
+            
+            // Parse metadata
+            if let metadata = extraDataDict["metadata"] as? [String: Any], !metadata.isEmpty {
+                parsedExtraData?["metadata"] = metadata
+            }
+        }
+        
+        // Use parsed extraData or nil if empty
+        let extraDataForSDK = (parsedExtraData != nil && !parsedExtraData!.isEmpty) ? parsedExtraData : nil
+        
         guard let rootVC = getTopViewController() else {
             print("⚠️ Failed to get top view controller")
+            reject("NO_ROOT_VIEW_CONTROLLER", "Failed to get top view controller", nil)
             return
         }
         
@@ -308,9 +388,12 @@ class DojahKyc: RCTEventEmitter, RCTBridgeDelegate {
                         widgetID: widgetId,
                         referenceID: safeReferenceId,
                         emailAddress: safeEmail,
+                        source: "ios_react_native_cli",
                         navController: dojahNavController
                     )
                     print("🎯 Dojah SDK initialized: widgetId=\(widgetId), referenceId=\(safeReferenceId), email=\(safeEmail)")
+                    // Resolve promise after successful initialization
+                    resolve("launched")
                 }
             }
         }
