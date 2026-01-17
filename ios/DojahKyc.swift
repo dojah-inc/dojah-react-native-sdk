@@ -3,6 +3,52 @@ import Foundation
 import DojahWidget
 import React
 
+// Extension to convert dictionary to ExtraUserData (for React Native CLI compatibility)
+extension Dictionary where Key == String, Value == Any {
+    func toExtraUserData() -> ExtraUserData {
+        let userDataDict = self["userData"] as? [String: Any]
+        let govDataDict = self["govData"] as? [String: Any]
+        let govIdDict = self["govId"] as? [String: Any]
+        let locationDict = self["location"] as? [String: Any]
+        let businessDataDict = self["businessData"] as? [String: Any]
+        let address = self["address"] as? String
+        let metadata = self["metadata"] as? [String: Any]
+        
+        return ExtraUserData(
+            userData: UserBioData(
+                firstName: userDataDict?["firstName"] as? String,
+                lastName: userDataDict?["lastName"] as? String,
+                dob: userDataDict?["dob"] as? String,
+                email: userDataDict?["email"] as? String
+            ),
+            govData: ExtraGovData(
+                bvn: govDataDict?["bvn"] as? String,
+                dl: govDataDict?["dl"] as? String,
+                nin: govDataDict?["nin"] as? String,
+                vnin: govDataDict?["vnin"] as? String
+            ),
+            govId: ExtraGovIdData(
+                national: govIdDict?["national"] as? String,
+                passport: govIdDict?["passport"] as? String,
+                dl: govIdDict?["dl"] as? String,
+                voter: govIdDict?["voter"] as? String,
+                nin: govIdDict?["nin"] as? String,
+                others: govIdDict?["others"] as? String
+            ),
+            location: ExtraLocationData(
+                longitude: locationDict?["longitude"] as? String,
+                latitude: locationDict?["latitude"] as? String
+            ),
+            businessData: ExtraBusinessData(
+                cac: businessDataDict?["cac"] as? String
+            ),
+            address: address,
+            metadata: metadata
+        )
+    }
+}
+
+
 // Custom NavigationController that prevents duplicate presentations
 class SafeDojahNavigationController: UINavigationController {
     private var isPresenting = false
@@ -384,10 +430,19 @@ class DojahKyc: RCTEventEmitter, RCTBridgeDelegate {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                     // Initialize SDK after presentation completes and view is laid out
                     // This ensures the view hierarchy is fully set up before camera access
+                    // Convert dictionary to ExtraUserData if method is available in SDK
+                    // If toExtraUserData() doesn't exist, this will need to be handled differently
+                    let extraUserDataForSDK: ExtraUserData? = {
+                        guard let extraDataDict = extraDataForSDK else { return ExtraUserData() }
+                        // Try to use toExtraUserData() if available in SDK (works in Expo)
+                        return extraDataDict.toExtraUserData()
+                    }()
+                    
                     DojahWidgetSDK.initialize(
                         widgetID: widgetId,
                         referenceID: safeReferenceId,
                         emailAddress: safeEmail,
+                        extraUserData: extraUserDataForSDK ?? ExtraUserData(),
                         source: "ios_react_native_cli",
                         navController: dojahNavController
                     )
