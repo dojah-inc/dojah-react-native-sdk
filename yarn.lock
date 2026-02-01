@@ -3103,16 +3103,16 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
-"dojah-kyc-sdk-react_native-example@file:/Users/village_square/node_project/dojah-react-native-sdk-dev/example":
+"dojah-kyc-sdk-react_native-example@file:/Users/ola/Desktop/dojah-react-native-sdk/example":
   version "0.0.1"
   resolved "file:example"
   dependencies:
-    dojah-kyc-sdk-react_native "file:.."
+    dojah-kyc-sdk-react_native "file:../"
     react "18.2.0"
     react-native "0.74.2"
 
-"dojah-kyc-sdk-react_native@file:..":
-  version "0.0.6-dev"
+"dojah-kyc-sdk-react_native@file:../":
+  version "0.0.8-dev"
   resolved "file:"
 
 dot-prop@^5.1.0:
