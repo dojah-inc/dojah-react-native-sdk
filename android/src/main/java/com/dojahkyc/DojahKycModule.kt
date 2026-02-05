@@ -49,7 +49,7 @@ class DojahKycModule(private val reactContext: ReactApplicationContext) :
     extraData: ReadableMap? = null,
     promise: Promise
   ) {
-    val activity = currentActivity
+    val activity = reactApplicationContext.currentActivity
 
     if (activity == null) {
       promise.reject("D_ACTIVITY_DOES_NOT_EXIST", "Activity doesn't exist")
