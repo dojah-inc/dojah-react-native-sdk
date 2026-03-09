@@ -1,11 +1,13 @@
 PODS:
   - boost (1.83.0)
-  - DojahWidget (1.0.4):
+  - Clarity (3.4.0)
+  - DojahWidget (1.0.9):
+    - Clarity
     - GooglePlaces (~> 8.5.0)
     - HorizonCalendar (~> 1.16.0)
     - IQKeyboardManagerSwift (~> 7.1.1)
     - Kingfisher (~> 7.12.0)
-    - lottie-ios (~> 4.3.3)
+    - lottie-ios (~> 4.5.2)
     - RealmSwift (~> 10.52.2)
   - DoubleConversion (1.1.6)
   - FBLazyVector (0.74.2)
@@ -15,7 +17,7 @@ PODS:
   - HorizonCalendar (1.16.0)
   - IQKeyboardManagerSwift (7.1.1)
   - Kingfisher (7.12.0)
-  - lottie-ios (4.3.4)
+  - lottie-ios (4.5.2)
   - RCT-Folly (2024.01.01.00):
     - boost
     - DoubleConversion
@@ -919,7 +921,7 @@ PODS:
   - React-Mapbuffer (0.74.2):
     - glog
     - React-debug
-  - react-native-dojah-kyc (0.0.8-dev):
+  - react-native-dojah-kyc (0.1.2):
     - DojahWidget
     - DoubleConversion
     - glog
@@ -1222,6 +1224,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Clarity
     - GooglePlaces
     - HorizonCalendar
     - IQKeyboardManagerSwift
@@ -1344,12 +1347,14 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   DojahWidget:
+    :commit: aff075348412192a28ccda247bc2372f666faa7a
     :git: https://github.com/dojah-inc/sdk-swift.git
     :tag: v1.0.0
 
 SPEC CHECKSUMS:
   boost: d3f49c53809116a5d38da093a8aa78bf551aed09
-  DojahWidget: 788dbfbd422f99b740828234567c46e62c722029
+  Clarity: 9c3884d6304ae614e34e6a31f0ed4ac4ec862c7e
+  DojahWidget: aac4a24949b55c476a8d9b83638b6c317dcc2f4a
   DoubleConversion: 76ab83afb40bddeeee456813d9c04f67f78771b5
   FBLazyVector: 4bc164e5b5e6cfc288d2b5ff28643ea15fa1a589
   fmt: 4c2741a687cc09f0634a2e2c72a838b99f1ff120
@@ -1358,7 +1363,7 @@ SPEC CHECKSUMS:
   HorizonCalendar: 90d7281cf1cd0cb3fae1d3e53f6f7fd24fda5a0e
   IQKeyboardManagerSwift: d7f3d3a562c237a0e7335e657cd598c452f57f1b
   Kingfisher: 53a10ea35051a436b5fb626ca2dd8f3144d755e9
-  lottie-ios: 3d98679b41fa6fd6aff2352b3953dbd3df8a397e
+  lottie-ios: 96784afc26ea031d3e2b6cae342a4b8915072489
   RCT-Folly: 5dc73daec3476616d19e8a53f0156176f7b55461
   RCTDeprecation: b03c35057846b685b3ccadc9bfe43e349989cdb2
   RCTRequired: 194626909cfa8d39ca6663138c417bc6c431648c
@@ -1383,7 +1388,7 @@ SPEC CHECKSUMS:
   React-jsitracing: 00f6151766dec0ab324e2854a9d4dfde0e1f30cc
   React-logger: 70e002e04cc56ff5c12157537405d1644c050703
   React-Mapbuffer: 8d1f0fc6e7280a8ed6da70ece5f283ac5c8032cb
-  react-native-dojah-kyc: e983a6e25cf1f7808fc4279d7ae22cf99eab080d
+  react-native-dojah-kyc: b18a582a4540985a9c19d578a3028b289891302b
   React-nativeconfig: 9f223cd321823afdecf59ed00861ab2d69ee0fc1
   React-NativeModulesApple: 149a9ee6dae0f3246e9cdb65dd289231bd8dac10
   React-perflogger: 32ed45d9cee02cf6639acae34251590dccd30994

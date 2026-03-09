@@ -1,8 +1,20 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Button, TextInput } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Button,
+  TextInput,
+  NativeEventEmitter,
+  NativeModules,
+  Platform,
+} from 'react-native';
 import { launchDojahKyc } from 'dojah-kyc-sdk-react_native';
 
+
+// Only create event emitter on iOS (Android uses promises, not events)
+const eventEmitter =
+  Platform.OS === 'ios' ? new NativeEventEmitter(NativeModules.DojahKyc) : null;
 
 export default function App() {
   // const [result, setResult] = React.useState<string | null>();//65ae97f4afee1c0040c9df6a
@@ -11,22 +23,31 @@ export default function App() {
   const [referenceId, setReferenceId] = React.useState('');
 
   React.useEffect(() => {
-    // initializeDojahIOS(appName);
-    // getIdHistory().then((value) => {
-    //   var result = `${value?.entries?.length??"0"}`
-    //   // if (value !== null) {
-    //   //   for (let [k, v] of value) {
-    //   //     result += `${k}: ${v}`
-    //   //   }
-    //   // }
-    //   setResult(result)
-    // });
+    // Register event listener only on iOS to prevent "no listeners" warning
+    // Android uses promises instead of events
+    if (Platform.OS === 'ios' && eventEmitter) {
+      const subscription = eventEmitter.addListener('onChange', (event) => {
+        console.log('Dojah onChange event:', event);
+      });
+
+      // Cleanup listener on unmount
+      return () => {
+        subscription.remove();
+      };
+    }
+    // Android doesn't use events, so no cleanup needed
+    return undefined;
   }, []);
 
   const onPress = async () => {
     const ref: string | null = referenceId === '' ? null : referenceId;
     const mail: string | null = email === '' ? null : email;
 
+    console.log('ref: ', ref);
+    console.log('mail: ', mail);
+    console.log('widgetId: ', widgetId);
+
+    // Define individual data objects
     const userData = {
       // firstName: 'John',
       // lastName: 'Doe',
@@ -60,17 +81,19 @@ export default function App() {
     //   key2: 'value2',
     // };
 
-     launchDojahKyc(
+    // Build extraData object as prescribed by the docs
+    const extraData: Record<string, unknown> = {};
+    if (Object.keys(userData).length > 0) extraData.userData = userData;
+    if (Object.keys(govData).length > 0) extraData.govData = govData;
+    if (Object.keys(govId).length > 0) extraData.govId = govId;
+    if (Object.keys(location).length > 0) extraData.location = location;
+    if (Object.keys(businessData).length > 0) extraData.businessData = businessData;
+
+    launchDojahKyc(
       widgetId,
       ref,
       mail,
-      userData,
-      govData,
-      govId,
-      location,
-      businessData,
-      null,
-      null
+      Object.keys(extraData).length > 0 ? extraData : null
     ).then((result) => {
       console.log('Result: ', result);
       switch (result) {

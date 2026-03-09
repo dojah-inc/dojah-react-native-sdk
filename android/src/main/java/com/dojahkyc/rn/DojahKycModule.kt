@@ -41,16 +41,10 @@ class DojahKycModule(private val reactContext: ReactApplicationContext) :
     widgetId: String,
     referenceId: String? = null,
     email: String? = null,
-    userData: ReadableMap? = null,
-    govData: ReadableMap? = null,
-    govId: ReadableMap? = null,
-    location: ReadableMap? = null,
-    businessData: ReadableMap? = null,
-    address: String? = null,
-    metadata: ReadableMap? = null,
+    extraData: ReadableMap? = null,
     promise: Promise
   ) {
-    val activity = currentActivity
+    val activity = reactApplicationContext.currentActivity
 
     if (activity == null) {
       promise.reject("D_ACTIVITY_DOES_NOT_EXIST", "Activity doesn't exist")
@@ -58,6 +52,15 @@ class DojahKycModule(private val reactContext: ReactApplicationContext) :
     }
     this.promise = promise
     try {
+      // Extract individual data from extraData object
+      val userData = extraData?.getMap("userData")
+      val govData = extraData?.getMap("govData")
+      val govId = extraData?.getMap("govId")
+      val location = extraData?.getMap("location")
+      val businessData = extraData?.getMap("businessData")
+      val address = extraData?.getString("address")
+      val metadata = extraData?.getMap("metadata")
+
       DojahSdk.with(reactContext)
         .launchWithBackwardCompatibility(activity, widgetId, referenceId, email, extraData = ExtraUserData(
           userData = UserData(
@@ -109,7 +112,7 @@ class DojahKycModule(private val reactContext: ReactApplicationContext) :
   }
 
 
-  override fun onActivityResult(activity:Activity?,requestCode: Int, resultCode: Int, data: Intent?) {
+  override fun onActivityResult(activity: Activity, requestCode: Int, resultCode: Int, data: Intent?) {
     if (requestCode == BACKWARD_CALL_REQUEST_CODE) {
         if (resultCode == Activity.RESULT_OK) {
             val result = data?.getStringExtra(DOJAH_RESULT_KEY)
@@ -121,7 +124,9 @@ class DojahKycModule(private val reactContext: ReactApplicationContext) :
     }
   }
 
-  override fun onNewIntent(intent: Intent?) {
+  override fun onNewIntent(intent: Intent) {
+    // Intent is guaranteed to be non-null in React Native New Architecture
+    // No implementation needed for this use case
   }
 
   companion object {

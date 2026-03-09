@@ -84,26 +84,22 @@ export function launchDojahKyc(
   widgetId: string,
   referenceId?: string | null,
   email?: string | null,
-  userData: Object | null = null,
-  govData: Object | null = null,
-  govId: Object | null = null,
-  location: Object | null = null,
-  businessData: Object | null = null,
-  address: string | null = null,
-  metadata: Object | null = null
+  extraData?: {
+    userData?: Object | null;
+    govData?: Object | null;
+    govId?: Object | null;
+    location?: Object | null;
+    businessData?: Object | null;
+    address?: string | null;
+    metadata?: Object | null;
+  } | null
 ): Promise<string | null> {
-  return DojahKyc.launch(
-    widgetId,
-    referenceId,
-    email,
-    userData,
-    govData,
-    govId,
-    location,
-    businessData,
-    address,
-    metadata
-  );
+  if (Platform.OS === 'ios') {
+    return DojahKyc.launch(widgetId, referenceId ?? '', email ?? '', extraData);
+  } else {
+    // Android now also uses extraData object (matching docs structure)
+    return DojahKyc.launch(widgetId, referenceId, email, extraData);
+  }
 }
 
 export function getIdHistory(): Promise<Map<string, string> | null> {
